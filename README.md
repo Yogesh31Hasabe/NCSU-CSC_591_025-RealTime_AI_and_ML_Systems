@@ -5,7 +5,7 @@
 - **Unity ID:** yhasabe
 - **Email:** yhasabe@ncsu.edu
 
-- 
+
 
 ## Project 0: Deep Neural Networks (DNN) and PyTorch
 
@@ -36,7 +36,11 @@
 - **Achieved Accuracy:** The modifications to the model architecture and optimization technique resulted in a significant performance boost, achieving an accuracy of **86.98%** on the test dataset.
 
 
+
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 ## Project 1: Tensor IR and Transformations
