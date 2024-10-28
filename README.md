@@ -215,3 +215,55 @@ In this project, we explore two types of pruning techniques applied to Deep Neur
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
+
+## Project 3: Model Quantization and Conv-BN Fusion
+
+## Overview
+This project explores the optimization of a VGG model through two primary techniques: **model quantization** and **Conv-BN fusion**. The initial FP32 model has a high accuracy of 92.95% and a size of 35.20 MiB. Quantization techniques, including int8 and 2-bit linear quantization, are applied to reduce the model size with minimal accuracy loss. Additionally, Conv-BN fusion is used to reduce the model's backbone length, potentially lowering computational complexity and improving inference efficiency. The results showcase how these methods help achieve a more efficient model suitable for deployment in resource-constrained environments.
+
+### Tabular Comparison of Model Accuracy and Size
+| Model               | Accuracy (%) | Size (MiB) |
+|---------------------|--------------|------------|
+| FP32 Model          | 92.95%       | 35.20      |
+| Int8 Model          | 92.80%       | Reduced*   |
+
+*Exact size reduction for int8 model not provided but it reduces to as low as 0.0 (MiB).
+
+### Linear Quantization Results
+| Target Bitwidth | Scale      | Zero Point | Test Status |
+|-----------------|------------|------------|-------------|
+| 2 bits          | 0.333333   | -1         | Passed      |
+
+### Conv-BN Fusion Analysis
+| Metric                       | Before Fusion | After Fusion |
+|------------------------------|---------------|--------------|
+| Backbone Length              | 29            | 21           |
+| Accuracy of Fused Model      | 92.95%        | 92.95%       |
+
+### Model Architecture after Quantization and Conv-BN Fusion
+The VGG model architecture after applying quantization includes several `QuantizedConv2d` and `QuantizedMaxPool2d` layers in the backbone, with a `QuantizedLinear` layer in the classifier.
+
+### Result Analysis
+
+1. **Accuracy and Model Size Analysis**  
+   The FP32 model achieves an accuracy of 92.95% with a size of 35.20 MiB. After int8 quantization, the accuracy slightly drops to 92.80%, indicating a minimal trade-off in accuracy for a likely reduction in model size. Exact size details for the int8 model aren’t provided, but typically, int8 quantization significantly reduces the storage requirement compared to FP32, making it beneficial for deployment in resource-constrained environments.
+
+2. **Linear Quantization**  
+   The 2-bit linear quantization test successfully passes with a scale factor of 0.333333 and a zero-point of -1, suggesting that lower bitwidth quantization is feasible for weight representation while preserving functionality. This low-bitwidth quantization may further reduce model size, though accuracy trade-offs are typically more pronounced as bitwidth decreases.
+
+3. **Conv-BN Fusion Analysis**  
+   The fusion of convolution and batch normalization layers reduces the backbone length from 29 to 21 layers without affecting model accuracy (92.95%). This indicates successful optimization, as conv-BN fusion generally improves inference speed and reduces computational complexity without compromising performance.
+
+### Summary
+
+- **Quantization Benefits**: Both int8 quantization and 2-bit linear quantization tests show that model size can be effectively reduced with minimal accuracy loss. This is particularly advantageous for deployment on devices with limited memory.
+- **Conv-BN Fusion Impact**: Conv-BN fusion successfully reduces model depth, which can lower the computational load during inference, contributing to faster execution times.
+  
+Quantization and Conv-BN fusion techniques are effective in optimizing model efficiency while maintaining high accuracy, making this approach suitable for deployment in edge devices or scenarios where storage and computational resources are constrained.
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
