@@ -1,4 +1,4 @@
-# CSC 591/791 (025) Fall 2024: Real-time AI and Machine Learning Systems
+# CSC 591/791 (025) Fall 2024: Real-time AI and Machine Learning Systems - CourseWork - MiniProjects
 
 ### Student Information
 - **Name:** Yogesh Hasabe
